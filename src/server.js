@@ -8,6 +8,7 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
+import { errors } from 'celebrate';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -17,12 +18,13 @@ app.use(express.json());
 app.use(cors()); // Дозволяє запити з будь-яких джерел
 
 app.use(notesRoutes);
+app.use(errors());
 
-// Маршрут для тестування middleware помилки
-app.get('/test-error', (req, res) => {
-  // Штучна помилка для прикладу
-  throw new Error('Simulated server error');
-});
+// // Маршрут для тестування middleware помилки
+// app.get('/test-error', (req, res) => {
+//   // Штучна помилка для прикладу
+//   throw new Error('Simulated server error');
+// });
 
 // Middleware 404 (після всіх маршрутів)
 app.use(notFoundHandler);
