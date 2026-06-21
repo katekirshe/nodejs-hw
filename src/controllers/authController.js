@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { sendEmail } from '../utils/sendEmail.js';
+import { sendEmail } from '../utils/sendMail.js';
 import bcrypt from "bcrypt";
 import createHttpError from 'http-errors';
 import { User } from '../models/user.js';
